@@ -7,6 +7,10 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: false
+  },
+  distDir: 'out',
+  generateBuildId: async () => {
+    return 'build-' + Date.now()
   }
 }
 
