@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Temporarily disabled for debugging
+  // Remove output: 'export' for Vercel deployment
   trailingSlash: true,
   images: {
     unoptimized: true
