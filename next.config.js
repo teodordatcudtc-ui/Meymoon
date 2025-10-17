@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove output: 'export' for Vercel deployment
-  trailingSlash: true,
+  // Standard Next.js configuration for Vercel
   images: {
-    unoptimized: true
+    domains: ['localhost'],
+    unoptimized: false
   },
   experimental: {
     optimizeCss: false
