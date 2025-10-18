@@ -1,273 +1,375 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, User, Clock, ArrowRight, Tag } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { Calendar, User, Clock, ArrowRight, Tag, BookOpen } from 'lucide-react'
 
 const BlogList = () => {
-  const articles = [
+
+  const blogPosts = [
     {
-      id: 'beneficiile-somatic-breathwork',
-      title: 'Beneficiile Somatic Breathwork pentru sănătatea mentală',
-      excerpt: 'Descoperă cum tehnica de respirație conștientă poate transforma sănătatea ta mentală și poate reduce stresul zilnic într-un mod natural și eficient.',
-      author: 'Alexandru Popescu',
-      date: '15 Decembrie 2024',
-      readTime: '8 min',
-      category: 'Somatic Breathwork',
-      image: '/images/blog/somatic-breathwork.jpg',
-      featured: true
-    },
-    {
-      id: 'cum-te-ajuta-pilatesul-la-postura-zilnica',
-      title: 'Cum te ajută Pilatesul la postura zilnică',
-      excerpt: 'Învață cum exercițiile de Pilates pot îmbunătăți postura ta zilnică și pot reduce durerile de spate cauzate de stilul de viață sedentar.',
-      author: 'Maria Ionescu',
-      date: '10 Decembrie 2024',
-      readTime: '6 min',
+      id: 'beneficiile-pilatesului-in-bucuresti',
+      title: 'Beneficiile Pilates-ului în București: De ce să alegi un studio local',
+      excerpt: 'Descoperă de ce Pilates-ul este perfect pentru viața urbană din București și cum te poate ajuta să reduci stresul zilnic.',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
       category: 'Pilates',
-      image: '/images/blog/pilates-posture.jpg',
-      featured: false
-    },
-    {
-      id: 'tehnici-de-respiratie-pentru-relaxare',
-      title: '5 tehnici de respirație pentru relaxare profundă',
-      excerpt: 'Descoperă tehnici simple de respirație pe care le poți practica acasă pentru a reduce stresul și a îmbunătăți calitatea somnului.',
-      author: 'Alexandru Popescu',
-      date: '5 Decembrie 2024',
+      author: 'Maria Popescu',
+      date: '2024-01-15',
       readTime: '5 min',
-      category: 'Wellness',
-      image: '/images/blog/breathing-techniques.jpg',
-      featured: false
+      tags: ['Pilates', 'București', 'Wellness', 'Stres'],
+      featured: true,
     },
     {
-      id: 'pilates-pentru-seniori-beneficii-si-tehnici',
-      title: 'Pilates pentru seniori: beneficii și tehnici adaptate',
-      excerpt: 'Află cum Pilatesul poate îmbunătăți mobilitatea, echilibrul și calitatea vieții la vârsta a treia prin exerciții adaptate și sigure.',
-      author: 'Elena Stoica',
-      date: '1 Decembrie 2024',
+      id: 'ce-este-somatic-breathwork',
+      title: 'Ce este Somatic Breathwork și cum te poate transforma viața',
+      excerpt: 'Explorează tehnica transformatoare de respirație conștientă care îți poate aduce liniștea interioară și echilibrul.',
+      image: 'https://images.unsplash.com/photo-1506905925346-14b1e5d07187?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      category: 'Somatic Breathwork',
+      author: 'Elena Dumitrescu',
+      date: '2024-01-10',
       readTime: '7 min',
+      tags: ['Somatic Breathwork', 'Respirație', 'Relaxare', 'Meditație'],
+      featured: false,
+    },
+    {
+      id: 'pilates-pentru-incepatori',
+      title: 'Pilates pentru Începători: Ghidul Complet de Început',
+      excerpt: 'Tot ce trebuie să știi despre Pilates dacă ești începător. De la echipament la exerciții de bază.',
+      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
       category: 'Pilates',
-      image: '/images/blog/pilates-seniors.jpg',
-      featured: false
-    },
-    {
-      id: 'alimentatie-pentru-wellness-si-energie',
-      title: 'Alimentația pentru wellness și energie optimă',
-      excerpt: 'Descoperă cum alimentația potrivită poate spori energia ta și poate susține practica de Pilates și Somatic Breathwork.',
-      author: 'Maria Ionescu',
-      date: '25 Noiembrie 2024',
-      readTime: '9 min',
-      category: 'Nutriție',
-      image: '/images/blog/nutrition-wellness.jpg',
-      featured: false
-    },
-    {
-      id: 'reducerea-stresului-prin-mișcare-conștientă',
-      title: 'Reducerea stresului prin mișcare conștientă',
-      excerpt: 'Învață cum mișcarea conștientă și exercițiile de Pilates pot fi instrumente puternice pentru gestionarea stresului zilnic.',
-      author: 'Cristian Marin',
-      date: '20 Noiembrie 2024',
+      author: 'Alexandru Ionescu',
+      date: '2024-01-05',
       readTime: '6 min',
+      tags: ['Pilates', 'Începători', 'Ghid', 'Exerciții'],
+      featured: false,
+    },
+    {
+      id: 'reducera-stresului-prin-miscare',
+      title: 'Cum să reduci stresul prin mișcarea conștientă',
+      excerpt: 'Tehnici practice pentru a gestiona stresul zilnic prin Pilates și Somatic Breathwork.',
+      image: 'https://images.unsplash.com/photo-1506905925346-14b1e5d07187?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
       category: 'Wellness',
-      image: '/images/blog/stress-reduction.jpg',
-      featured: false
-    }
+      author: 'Maria Popescu',
+      date: '2023-12-28',
+      readTime: '8 min',
+      tags: ['Stres', 'Mișcare', 'Wellness', 'Sănătate'],
+      featured: false,
+    },
+    {
+      id: 'echipament-pilates-ghid',
+      title: 'Ghidul Complet pentru Echipamentul de Pilates',
+      excerpt: 'Tot ce trebuie să știi despre echipamentul de Pilates: de la covoraș la Reformer.',
+      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      category: 'Pilates',
+      author: 'Alexandru Ionescu',
+      date: '2023-12-20',
+      readTime: '9 min',
+      tags: ['Echipament', 'Pilates', 'Reformer', 'Ghid'],
+      featured: false,
+    },
+    {
+      id: 'beneficiile-respiratiei-constiente',
+      title: 'Beneficiile Respirației Conștiente pentru Sănătatea Mentală',
+      excerpt: 'Cum tehnica de respirație conștientă îți poate îmbunătăți starea mentală și emoțională.',
+      image: 'https://images.unsplash.com/photo-1506905925346-14b1e5d07187?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      category: 'Somatic Breathwork',
+      author: 'Elena Dumitrescu',
+      date: '2023-12-15',
+      readTime: '6 min',
+      tags: ['Respirație', 'Sănătate Mentală', 'Somatic Breathwork', 'Wellness'],
+      featured: false,
+    },
   ]
 
-  const categories = ['Toate', 'Pilates', 'Somatic Breathwork', 'Wellness', 'Nutriție']
+  const categories = ['Toate', 'Pilates', 'Somatic Breathwork', 'Wellness']
+  const [activeCategory, setActiveCategory] = useState('Toate')
+
+  const filteredPosts = activeCategory === 'Toate' 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === activeCategory)
+
+  const featuredPost = filteredPosts.find(post => post.featured)
+  const regularPosts = filteredPosts.filter(post => !post.featured)
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  }
 
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary-800 mb-6">
-            Articole recente
-          </h2>
-          <p className="text-xl text-primary-600 max-w-3xl mx-auto leading-relaxed">
-            Explorează colecția noastră de articole despre wellness, Pilates și 
-            Somatic Breathwork, scrise de experții noștri certificați.
-          </p>
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Articole Recente</span>
+          </motion.div>
+
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6"
+          >
+            Explorează
+            <span className="block text-gradient">Articolele Noastre</span>
+          </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed"
+          >
+            Descoperă sfaturi practice, tehnici de Pilates și ghiduri despre wellness 
+            pentru a-ți îmbunătăți stilul de viață.
+          </motion.p>
         </motion.div>
 
         {/* Category Filter */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
           {categories.map((category) => (
-            <button
+            <motion.button
               key={category}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                category === 'Toate'
-                  ? 'bg-accent-600 text-white shadow-lg'
-                  : 'bg-primary-100 text-primary-700 hover:bg-accent-100 hover:text-accent-700'
+              variants={itemVariants}
+              onClick={() => setActiveCategory(category)}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeCategory === category
+                  ? 'bg-blue-500 text-white shadow-lg'
+                  : 'bg-neutral-100 text-neutral-600 hover:bg-blue-100 hover:text-blue-700'
               }`}
             >
               {category}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
-        {/* Featured Article */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="bg-gradient-to-r from-accent-600 to-accent-700 rounded-3xl p-8 md:p-12 text-white">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium mb-4">
-                  <Tag className="w-4 h-4" />
-                  <span>Articol recomandat</span>
-                </div>
-                <h3 className="text-3xl font-playfair font-bold mb-4">
-                  {articles[0].title}
-                </h3>
-                <p className="text-accent-100 mb-6 leading-relaxed">
-                  {articles[0].excerpt}
-                </p>
-                <div className="flex items-center space-x-6 text-sm text-accent-200 mb-6">
-                  <div className="flex items-center space-x-2">
-                    <User className="w-4 h-4" />
-                    <span>{articles[0].author}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>{articles[0].date}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Clock className="w-4 h-4" />
-                    <span>{articles[0].readTime}</span>
-                  </div>
-                </div>
-                <Link
-                  href={`/blog/${articles[0].id}`}
-                  className="bg-white text-accent-600 px-6 py-3 rounded-xl font-medium hover:bg-accent-50 transition-colors duration-300 inline-flex items-center group"
-                >
-                  Citește articolul complet
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl h-80 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-white font-bold text-3xl">SB</span>
-                  </div>
-                  <p className="text-white text-lg">Somatic Breathwork</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.slice(1).map((article, index) => (
-            <motion.article
-              key={article.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="card p-6 group hover:scale-105 transition-all duration-300"
+        {/* Featured Post */}
+        {featuredPost && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="mb-16"
+          >
+            <motion.div
+              variants={itemVariants}
+              className="card overflow-hidden group hover:scale-105 transition-all duration-300"
             >
-              {/* Article Image */}
-              <div className="bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl h-48 flex items-center justify-center mb-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-white font-bold text-xl">
-                      {article.category.charAt(0)}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                <div className="relative h-64 lg:h-auto">
+                  <Image
+                    src={featuredPost.image}
+                    alt={featuredPost.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      Articol Recomandat
                     </span>
                   </div>
-                  <p className="text-primary-600 text-sm">{article.category}</p>
+                </div>
+                
+                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                      {featuredPost.category}
+                    </span>
+                    <div className="flex items-center space-x-2 text-sm text-neutral-500">
+                      <Calendar className="w-4 h-4" />
+                      <span>{new Date(featuredPost.date).toLocaleDateString('ro-RO')}</span>
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-2xl lg:text-3xl font-serif font-bold text-neutral-900 mb-4 group-hover:text-blue-500 transition-colors">
+                    {featuredPost.title}
+                  </h3>
+                  
+                  <p className="text-neutral-600 leading-relaxed mb-6">
+                    {featuredPost.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center space-x-4 text-sm text-neutral-500">
+                      <div className="flex items-center space-x-1">
+                        <User className="w-4 h-4" />
+                        <span>{featuredPost.author}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Clock className="w-4 h-4" />
+                        <span>{featuredPost.readTime}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {featuredPost.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="bg-neutral-100 text-neutral-600 px-3 py-1 rounded-full text-xs font-medium"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <Link
+                    href={`/blog/${featuredPost.id}`}
+                    className="btn-primary inline-flex items-center group w-fit"
+                  >
+                    Citește Articolul
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
 
-              {/* Article Content */}
-              <div className="space-y-4">
-                <div className="flex items-center space-x-2">
-                  <span className="bg-accent-100 text-accent-700 px-3 py-1 rounded-full text-xs font-medium">
-                    {article.category}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-playfair font-semibold text-primary-800 group-hover:text-accent-600 transition-colors duration-300">
-                  {article.title}
-                </h3>
-
-                <p className="text-primary-600 leading-relaxed line-clamp-3">
-                  {article.excerpt}
-                </p>
-
-                <div className="flex items-center space-x-4 text-sm text-primary-500">
-                  <div className="flex items-center space-x-1">
-                    <User className="w-4 h-4" />
-                    <span>{article.author}</span>
+        {/* Regular Posts */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {regularPosts.map((post) => (
+            <motion.article
+              key={post.id}
+              variants={itemVariants}
+              className="group"
+            >
+              <div className="card overflow-hidden h-full group-hover:scale-105 transition-all duration-300">
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      {post.category}
+                    </span>
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{article.readTime}</span>
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center space-x-4 text-sm text-neutral-500 mb-3">
+                    <div className="flex items-center space-x-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>{new Date(post.date).toLocaleDateString('ro-RO')}</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Clock className="w-4 h-4" />
+                      <span>{post.readTime}</span>
+                    </div>
                   </div>
+                  
+                  <h3 className="text-xl font-semibold text-neutral-900 mb-3 group-hover:text-blue-500 transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-neutral-600 leading-relaxed mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-2 text-sm text-neutral-500">
+                      <User className="w-4 h-4" />
+                      <span>{post.author}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {post.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="bg-neutral-100 text-neutral-600 px-2 py-1 rounded text-xs font-medium"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className="text-blue-500 hover:text-blue-600 font-medium inline-flex items-center group"
+                  >
+                    Citește mai mult
+                    <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
-
-                <div className="text-sm text-primary-500">
-                  {article.date}
-                </div>
-
-                <Link
-                  href={`/blog/${article.id}`}
-                  className="inline-flex items-center text-accent-600 font-medium hover:text-accent-700 transition-colors duration-300 group-hover:translate-x-1"
-                >
-                  Citește mai mult
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Newsletter Signup */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="mt-16"
         >
-          <div className="bg-gradient-to-r from-primary-100 to-accent-100 rounded-3xl p-8 md:p-12">
-            <h3 className="text-3xl font-playfair font-bold text-primary-800 mb-4">
-              Abonează-te la newsletter
+          <motion.div
+            variants={itemVariants}
+            className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-8 md:p-12 text-white text-center"
+          >
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4">
+              Vrei să înveți mai multe despre Pilates?
             </h3>
-            <p className="text-xl text-primary-600 mb-8 max-w-2xl mx-auto">
-              Primește articole noi despre wellness și Pilates direct în inbox-ul tău. 
-              Fără spam, doar conținut de calitate.
+            <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+              Rezervă-ți prima clasă gratuită și descoperă personal beneficiile 
+              Pilates-ului și Somatic Breathwork-ului.
             </p>
-            <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-              <input
-                type="email"
-                placeholder="Adresa ta de email"
-                className="flex-1 px-4 py-3 border border-primary-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-              />
-              <button
-                type="submit"
-                className="bg-accent-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-accent-700 transition-colors duration-300"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/programari"
+                className="bg-white text-blue-500 hover:bg-blue-50 px-8 py-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center justify-center"
               >
-                Abonează-te
-              </button>
-            </form>
-          </div>
+                Rezervă Prima Clasă Gratuită
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
+              <a
+                href="/contact"
+                className="border-2 border-white text-white hover:bg-white hover:text-blue-500 px-8 py-4 rounded-lg font-medium transition-all duration-300 inline-flex items-center justify-center"
+              >
+                Contactează-ne
+              </a>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

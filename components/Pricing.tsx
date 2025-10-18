@@ -1,288 +1,361 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Check, Star, Clock, Users, Heart } from 'lucide-react'
+import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
+import { Check, Star, ArrowRight, Clock, Users } from 'lucide-react'
 
 const Pricing = () => {
-  const plans = [
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const pricingPlans = [
     {
-      name: 'Pachet Începător',
-      description: 'Perfect pentru cei care încep călătoria în Pilates',
-      price: '299',
-      period: 'lună',
-      popular: false,
+      name: 'Clasă Simplă',
+      description: 'Perfect pentru începători sau cei care doresc să încerce Pilates.',
+      price: '80',
+      period: 'RON/clasă',
       features: [
-        '4 clase de Pilates Mat pe lună',
-        'Acces la toate clasele de grup',
-        'Instrucțiuni pentru începători',
-        'Echipamente incluse',
-        'Sprijin online'
+        '1 clasă de Pilates Mat',
+        'Durată: 60 minute',
+        'Grup mic (max 8 persoane)',
+        'Echipament inclus',
+        'Instrucțiuni detaliate',
+        'Atmosferă relaxantă',
       ],
-      icon: Heart,
-      color: 'from-primary-500 to-primary-600',
-      bgColor: 'from-primary-50 to-primary-100'
+      popular: false,
+      color: 'bg-green-500',
+      bgColor: 'bg-green-50',
+      textColor: 'text-green-700',
     },
     {
-      name: 'Pachet Standard',
-      description: 'Cel mai popular - echilibru perfect între preț și beneficii',
-      price: '499',
-      period: 'lună',
+      name: 'Abonament Lunar',
+      description: 'Cel mai popular pentru practicanții regulari de Pilates.',
+      price: '280',
+      period: 'RON/lună',
+      features: [
+        '8 clase de Pilates Mat',
+        'Durată: 60 minute/clasă',
+        'Grupuri mici (max 8 persoane)',
+        'Echipament inclus',
+        'Instrucțiuni personalizate',
+        'Flexibilitate în programare',
+        'Acces la toate clasele',
+        'Suport online',
+      ],
       popular: true,
-      features: [
-        '8 clase pe lună (orice tip)',
-        '1 sesiune Somatic Breathwork inclusă',
-        'Acces la toate clasele de grup',
-        'Echipamente incluse',
-        'Sprijin online',
-        'Reducere 10% la sesiuni personalizate'
-      ],
-      icon: Star,
-      color: 'from-accent-500 to-accent-600',
-      bgColor: 'from-accent-50 to-accent-100'
+      color: 'bg-primary-500',
+      bgColor: 'bg-primary-50',
+      textColor: 'text-primary-700',
     },
     {
-      name: 'Pachet Premium',
-      description: 'Pentru cei care vor experiența completă de wellness',
-      price: '799',
-      period: 'lună',
-      popular: false,
+      name: 'Abonament Premium',
+      description: 'Pentru cei care doresc acces complet la toate serviciile.',
+      price: '450',
+      period: 'RON/lună',
       features: [
-        'Clase nelimitate pe lună',
-        '2 sesiuni Somatic Breathwork incluse',
-        '1 sesiune personalizată inclusă',
-        'Acces la toate clasele de grup',
-        'Echipamente incluse',
-        'Sprijin online 24/7',
-        'Reducere 20% la sesiuni personalizate',
-        'Acces la workshop-uri speciale'
+        '12 clase de Pilates Mat',
+        '4 clase de Reformer',
+        '2 sesiuni Somatic Breathwork',
+        'Durată: 60-90 minute/clasă',
+        'Grupuri mici (max 6 persoane)',
+        'Echipament premium inclus',
+        'Instrucțiuni personalizate',
+        'Flexibilitate maximă',
+        'Acces la toate clasele',
+        'Suport online și offline',
+        'Consultanță gratuită',
       ],
-      icon: Users,
-      color: 'from-purple-500 to-purple-600',
-      bgColor: 'from-purple-50 to-purple-100'
-    }
+      popular: false,
+      color: 'bg-purple-500',
+      bgColor: 'bg-purple-50',
+      textColor: 'text-purple-700',
+    },
   ]
 
-  const addOns = [
+  const additionalServices = [
     {
-      name: 'Sesiune Personalizată',
-      price: '150',
-      period: 'sesiune',
-      description: 'Sesiune one-on-one cu instructor certificat'
+      name: 'Pilates Reformer',
+      price: '120 RON/clasă',
+      description: 'Clase pe aparatul Reformer pentru o experiență intensivă',
     },
     {
       name: 'Somatic Breathwork',
-      price: '80',
-      period: 'sesiune',
-      description: 'Sesiune individuală de Somatic Breathwork'
+      price: '100 RON/sesiune',
+      description: 'Tehnici de respirație conștientă pentru relaxare profundă',
     },
     {
-      name: 'Pachet 10 Clase',
-      price: '450',
-      period: 'pachet',
-      description: '10 clase la alegere (valabile 3 luni)'
-    }
+      name: 'Antrenament Privat',
+      price: '200 RON/sesiune',
+      description: 'Sesiuni one-on-one personalizate pentru rezultate optime',
+    },
+    {
+      name: 'Workshop Special',
+      price: '150 RON/sesiune',
+      description: 'Sesiuni tematice și workshop-uri de weekend',
+    },
   ]
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  }
 
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary-800 mb-6">
-            Prețuri și pachete
-          </h2>
-          <p className="text-xl text-primary-600 max-w-3xl mx-auto leading-relaxed">
-            Alege pachetul care ți se potrivește cel mai bine. Toate pachetele includ 
-            echipamente și sprijin online. Prima ședință este gratuită pentru toți!
-          </p>
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center space-x-2 bg-accent-100 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
+          >
+            <Star className="w-4 h-4" />
+            <span>Prețuri și Pachete</span>
+          </motion.div>
+
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6"
+          >
+            Alege
+            <span className="block text-gradient">Pachetul Potrivit</span>
+          </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed"
+          >
+            Oferim pachete flexibile adaptate nevoilor și bugetului fiecăruia. 
+            Prima clasă este gratuită pentru clienții noi!
+          </motion.p>
         </motion.div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {plans.map((plan, index) => (
+        {/* Pricing Plans */}
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+        >
+          {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className={`relative card p-8 ${
-                plan.popular ? 'ring-2 ring-accent-500 scale-105' : ''
+              variants={itemVariants}
+              className={`relative group ${
+                plan.popular ? 'md:scale-105' : ''
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-accent-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                  <div className="bg-primary-500 text-white px-4 py-2 rounded-full text-sm font-medium">
                     Cel mai popular
                   </div>
                 </div>
               )}
+              
+              <div className={`card p-8 h-full ${
+                plan.popular 
+                  ? 'border-2 border-primary-500 shadow-2xl' 
+                  : 'group-hover:scale-105'
+              } transition-all duration-300`}>
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-semibold text-neutral-900 mb-2">
+                    {plan.name}
+                  </h3>
+                  <p className="text-neutral-600 mb-6">
+                    {plan.description}
+                  </p>
+                  
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold text-primary-500">
+                      {plan.price}
+                    </span>
+                    <span className="text-neutral-600 ml-2">
+                      {plan.period}
+                    </span>
+                  </div>
+                </div>
 
-              <div className="text-center mb-8">
-                <div className={`w-16 h-16 bg-gradient-to-r ${plan.color} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
-                  <plan.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-primary-800 mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-primary-600 mb-4">{plan.description}</p>
-                <div className="flex items-baseline justify-center">
-                  <span className="text-4xl font-bold text-primary-800">{plan.price}</span>
-                  <span className="text-primary-600 ml-2">lei/{plan.period}</span>
-                </div>
+                <ul className="space-y-4 mb-8">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start space-x-3">
+                      <Check className="w-5 h-5 text-accent-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-neutral-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href="/programari"
+                  className={`w-full text-center py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
+                    plan.popular
+                      ? 'bg-primary-500 text-white hover:bg-primary-600 transform hover:scale-105'
+                      : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                  }`}
+                >
+                  Alege Pachetul
+                  <ArrowRight className="inline-block ml-2 w-4 h-4" />
+                </Link>
               </div>
-
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-accent-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-primary-600">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="/contact"
-                className={`w-full py-4 rounded-2xl font-medium text-center transition-all duration-300 ${
-                  plan.popular
-                    ? 'bg-accent-600 text-white hover:bg-accent-700 hover:scale-105'
-                    : 'bg-primary-200 text-primary-800 hover:bg-primary-300 hover:scale-105'
-                }`}
-              >
-                Alege pachetul
-              </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Add-ons */}
+        {/* Additional Services */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
           className="mb-16"
         >
-          <h3 className="text-3xl font-playfair font-bold text-primary-800 text-center mb-12">
-            Servicii suplimentare
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {addOns.map((addOn, index) => (
+          <motion.h3
+            variants={itemVariants}
+            className="text-3xl font-serif font-bold text-neutral-900 text-center mb-12"
+          >
+            Servicii Suplimentare
+          </motion.h3>
+
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {additionalServices.map((service, index) => (
               <motion.div
-                key={addOn.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-primary-50 rounded-2xl p-6 text-center"
+                key={service.name}
+                variants={itemVariants}
+                className="card p-6 text-center group hover:scale-105 transition-all duration-300"
               >
-                <h4 className="text-xl font-semibold text-primary-800 mb-2">
-                  {addOn.name}
+                <h4 className="text-lg font-semibold text-neutral-900 mb-2">
+                  {service.name}
                 </h4>
-                <div className="flex items-baseline justify-center mb-3">
-                  <span className="text-3xl font-bold text-accent-600">{addOn.price}</span>
-                  <span className="text-primary-600 ml-2">lei/{addOn.period}</span>
+                <div className="text-2xl font-bold text-primary-500 mb-3">
+                  {service.price}
                 </div>
-                <p className="text-primary-600 text-sm mb-4">{addOn.description}</p>
-                <Link
-                  href="/contact"
-                  className="text-accent-600 font-medium hover:text-accent-700 transition-colors duration-300"
-                >
-                  Programează acum
-                </Link>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  {service.description}
+                </p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* FAQ Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-r from-primary-100 to-accent-100 rounded-3xl p-8 md:p-12"
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="mb-16"
         >
-          <h3 className="text-3xl font-playfair font-bold text-primary-800 text-center mb-12">
-            Întrebări frecvente
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="text-lg font-semibold text-primary-800 mb-3">
-                Pot să schimb pachetul oricând?
-              </h4>
-              <p className="text-primary-600">
-                Da, poți schimba pachetul oricând. Modificările intră în vigoare 
-                de la următoarea lună de facturare.
-              </p>
+          <motion.div
+            variants={itemVariants}
+            className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8 md:p-12"
+          >
+            <h3 className="text-2xl md:text-3xl font-serif font-bold text-neutral-900 text-center mb-8">
+              Întrebări Frecvente
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-lg font-semibold text-neutral-900 mb-2">
+                  Pot să anulez o clasă?
+                </h4>
+                <p className="text-neutral-600">
+                  Da, poți anula o clasă cu cel puțin 24 de ore înainte fără costuri suplimentare.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-neutral-900 mb-2">
+                  Ce trebuie să aduc la clasă?
+                </h4>
+                <p className="text-neutral-600">
+                  Doar haine confortabile și o sticlă de apă. Echipamentul este inclus în preț.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-neutral-900 mb-2">
+                  Pot să schimb nivelul clasei?
+                </h4>
+                <p className="text-neutral-600">
+                  Da, poți schimba nivelul clasei oricând, în funcție de progresul tău.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold text-neutral-900 mb-2">
+                  Există reducere pentru studenți?
+                </h4>
+                <p className="text-neutral-600">
+                  Da, oferim 10% reducere pentru studenți cu carnet de student valid.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="text-lg font-semibold text-primary-800 mb-3">
-                Ce se întâmplă dacă nu pot veni la o clasă?
-              </h4>
-              <p className="text-primary-600">
-                Poți anula o clasă cu cel puțin 4 ore înainte. Clasele anulate 
-                pot fi reprogramate în aceeași lună.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-primary-800 mb-3">
-                Echipamentele sunt incluse?
-              </h4>
-              <p className="text-primary-600">
-                Da, toate echipamentele necesare sunt incluse în preț. 
-                Doar adu-ți prosopul și apa.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-primary-800 mb-3">
-                Pot să fac prima ședință gratuită?
-              </h4>
-              <p className="text-primary-600">
-                Absolut! Prima ședință este gratuită pentru toți clienții noi. 
-                Contactează-ne pentru a programa.
-              </p>
-            </div>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
+          ref={ref}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
         >
-          <div className="bg-gradient-to-r from-accent-600 to-accent-700 rounded-3xl p-8 md:p-12 text-white">
-            <h3 className="text-3xl md:text-4xl font-playfair font-bold mb-4">
-              Gata să începi?
+          <motion.div
+            variants={itemVariants}
+            className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-8 md:p-12 text-white text-center"
+          >
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4">
+              Gata să începi călătoria ta de wellness?
             </h3>
-            <p className="text-xl text-accent-100 mb-8 max-w-2xl mx-auto">
-              Programează ședința ta gratuită de probă și descoperă 
-              care pachet ți se potrivește cel mai bine.
+            <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+              Rezervă-ți prima clasă gratuită și descoperă beneficiile Pilates-ului 
+              într-un mediu profesional și relaxant.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/contact"
-                className="bg-white text-accent-600 px-8 py-4 rounded-2xl font-medium hover:bg-accent-50 transition-colors duration-300"
+                href="/programari"
+                className="bg-white text-primary-500 hover:bg-primary-50 px-8 py-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center justify-center"
               >
-                Programează ședința gratuită
+                Rezervă Prima Clasă Gratuită
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
               <Link
-                href="/clase"
-                className="border-2 border-white text-white px-8 py-4 rounded-2xl font-medium hover:bg-white hover:text-accent-600 transition-colors duration-300"
+                href="/contact"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary-500 px-8 py-4 rounded-lg font-medium transition-all duration-300 inline-flex items-center justify-center"
               >
-                Vezi programul claselor
+                Contactează-ne
               </Link>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

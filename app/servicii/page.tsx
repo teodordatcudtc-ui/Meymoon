@@ -1,33 +1,23 @@
 import { Metadata } from 'next'
-import ServicesHero from '@/components/ServicesHero'
 import ServicesList from '@/components/ServicesList'
-import SomaticBreathwork from '@/components/SomaticBreathwork'
+import ClassTypes from '@/components/ClassTypes'
 
 export const metadata: Metadata = {
-  title: 'Servicii - Pilates și Somatic Breathwork | Meymoon Studio București',
-  description: 'Descoperă serviciile noastre complete: Pilates Mat, Pilates Reformer, Somatic Breathwork, clase de grup și personalizate. Programează o ședință de probă gratuită!',
-  keywords: 'servicii pilates București, Pilates Mat, Pilates Reformer, Somatic Breathwork, clase pilates, pilates personalizat, wellness București',
+  title: 'Servicii Pilates - Meymoon Studio | Clase Mat, Reformer, Somatic Breathwork',
+  description: 'Descoperă serviciile noastre de Pilates: clase Mat, Reformer, Somatic Breathwork, antrenamente private și workshop-uri. Prețuri competitive și instrucțiuni profesionale.',
+  keywords: 'servicii pilates București, clase pilates mat, pilates reformer, somatic breathwork, antrenamente private pilates, workshop pilates',
   openGraph: {
-    title: 'Servicii - Pilates și Somatic Breathwork | Meymoon Studio București',
-    description: 'Descoperă serviciile noastre complete: Pilates Mat, Pilates Reformer, Somatic Breathwork, clase de grup și personalizate. Programează o ședință de probă gratuită!',
-    url: 'https://meymoonstudio.ro/servicii',
-    images: [
-      {
-        url: '/images/og-services.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Servicii Pilates și Somatic Breathwork la Meymoon Studio',
-      },
-    ],
+    title: 'Servicii Pilates - Meymoon Studio | Clase Mat, Reformer, Somatic Breathwork',
+    description: 'Descoperă serviciile noastre de Pilates: clase Mat, Reformer, Somatic Breathwork, antrenamente private și workshop-uri. Prețuri competitive și instrucțiuni profesionale.',
+    images: ['/og-services.jpg'],
   },
 }
 
 export default function Services() {
   return (
     <>
-      <ServicesHero />
       <ServicesList />
-      <SomaticBreathwork />
+      <ClassTypes />
     </>
   )
 }

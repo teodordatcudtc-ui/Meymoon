@@ -1,10 +1,10 @@
 {
   "name": "Meymoon Pilates Studio",
   "short_name": "Meymoon Studio",
-  "description": "Studio de Pilates și Somatic Breathwork în București. Clase profesionale pentru wellness și sănătate.",
+  "description": "Studio premium de Pilates în București. Clase de Pilates Mat, Reformer, Somatic Breathwork și antrenamente private.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#e7ded9",
+  "background_color": "#ffffff",
   "theme_color": "#906054",
   "orientation": "portrait-primary",
   "icons": [

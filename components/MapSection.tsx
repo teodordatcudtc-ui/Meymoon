@@ -1,176 +1,133 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { MapPin, Navigation, Clock, Phone } from 'lucide-react'
 
 const MapSection = () => {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-neutral-50">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary-800 mb-6">
-            Locația noastră
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
+            Găsește-ne
+            <span className="block text-gradient">La Studio</span>
           </h2>
-          <p className="text-xl text-primary-600 max-w-3xl mx-auto leading-relaxed">
-            Ne găsești în inima Bucureștiului, la Strada Negoiu 51, Sector 3. 
-            Studio este ușor accesibil cu transportul public și cu mașina.
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            Studio-ul nostru este situat în inima Bucureștiului, într-o zonă accesibilă 
+            și cu parcare disponibilă.
           </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2"
-          >
-            <div className="bg-primary-100 rounded-3xl p-4 shadow-xl">
-              <div className="rounded-2xl overflow-hidden">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2327.8067771712017!2d26.13108950531052!3d44.425774803717935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ffe20e18488b%3A0x2266d9644cd76f38!2sMeymoon%20Pilates%20Studio!5e0!3m2!1sen!2sro!4v1760708428584!5m2!1sen!2sro"
-                  width="100%"
-                  height="400"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Locația Meymoon Pilates Studio"
-                  className="w-full h-96 rounded-xl"
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Location Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            {/* Address */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-accent-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-primary-800 mb-2">
-                    Adresa noastră
-                  </h3>
-                  <p className="text-primary-700 leading-relaxed">
-                    Strada Negoiu 51<br />
-                    București 031126<br />
-                    Sector 3, România
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Directions */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-accent-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Navigation className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-primary-800 mb-2">
-                    Cum să ajungi
-                  </h3>
-                  <div className="space-y-2 text-sm text-primary-600">
-                    <p><strong>Metrou:</strong> Stația Piața Victoriei (10 min mers)</p>
-                    <p><strong>Autobuz:</strong> Linia 131, 205 (stația în apropiere)</p>
-                    <p><strong>Mașină:</strong> Parcare disponibilă în zonă</p>
-                    <p><strong>Taxi/Uber:</strong> Accesibil din toată Bucureștiul</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Schedule */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-accent-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-primary-800 mb-2">
-                    Program de lucru
-                  </h3>
-                  <div className="space-y-1 text-sm text-primary-600">
-                    <p><strong>Luni - Vineri:</strong> 07:00 - 21:00</p>
-                    <p><strong>Sâmbătă:</strong> 08:00 - 18:00</p>
-                    <p><strong>Duminică:</strong> 09:00 - 17:00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Contact */}
-            <div className="bg-gradient-to-r from-accent-600 to-accent-700 rounded-2xl p-6 text-white">
-              <h3 className="text-lg font-semibold mb-4">
-                Ai întrebări despre locație?
-              </h3>
-              <p className="text-accent-100 text-sm mb-4">
-                Sună-ne pentru direcții sau informații despre accesibilitate.
-              </p>
-              <a
-                href="tel:0751901111"
-                className="bg-white text-accent-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-accent-50 transition-colors duration-300 inline-flex items-center"
-              >
-                <Phone className="w-4 h-4 mr-2" />
-                Sună acum
-              </a>
-            </div>
-          </motion.div>
         </div>
 
-        {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 bg-gradient-to-r from-primary-100 to-accent-100 rounded-3xl p-8"
-        >
-          <div className="text-center">
-            <h3 className="text-2xl font-playfair font-bold text-primary-800 mb-6">
-              Informații despre accesibilitate
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-              <div>
-                <h4 className="font-semibold text-primary-800 mb-2">Accesibilitate</h4>
-                <p className="text-sm text-primary-600">
-                  Studio este complet accesibil pentru persoanele cu dizabilități. 
-                  Avem lift și facilități adaptate.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-primary-800 mb-2">Parcare</h4>
-                <p className="text-sm text-primary-600">
-                  Parcare gratuită disponibilă în fața studioului. 
-                  Spațiu rezervat pentru clienți.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-primary-800 mb-2">Transport public</h4>
-                <p className="text-sm text-primary-600">
-                  Ușor accesibil cu metroul (Piața Victoriei) și autobuzul. 
-                  Doar 5-10 minute mers pe jos.
-                </p>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Map */}
+          <div className="relative">
+            <div className="relative w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2851.2345678901234!2d26.123456789012345!3d44.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1f1234567890%3A0x1234567890abcdef!2sStrada%20Negoiu%2051%2C%20București%20031126!5e0!3m2!1sro!2sro!4v1234567890123!5m2!1sro!2sro"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Locația Meymoon Studio - Strada Negoiu 51, București"
+              ></iframe>
             </div>
           </div>
-        </motion.div>
+
+          {/* Contact Details */}
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-2xl font-serif font-bold text-neutral-900 mb-6">
+                Informații de Contact
+              </h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-primary-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-900 mb-1">Adresa</h4>
+                    <p className="text-neutral-600">
+                      Strada Negoiu 51<br />
+                      București 031126<br />
+                      România
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-accent-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-900 mb-1">Telefon</h4>
+                    <p className="text-neutral-600">
+                      <a href="tel:0751901111" className="hover:text-primary-500 transition-colors">
+                        0751 901 111
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-secondary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-secondary-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-900 mb-1">Program</h4>
+                    <div className="text-neutral-600 space-y-1">
+                      <p>Luni - Vineri: 8:00 - 20:00</p>
+                      <p>Sâmbătă: 9:00 - 14:00</p>
+                      <p>Duminică: Închis</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-6">
+              <h4 className="font-semibold text-neutral-900 mb-4">Cum să ajungi la noi:</h4>
+              <div className="space-y-3 text-sm text-neutral-600">
+                <div className="flex items-start space-x-3">
+                  <div className="w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</div>
+                  <p>Cu metroul: Stația Piața Victoriei (5 min pe jos)</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</div>
+                  <p>Cu autobuzul: Linia 131, 205, 282 (stația în fața studioului)</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</div>
+                  <p>Cu mașina: Parcare disponibilă în zonă</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</div>
+                  <p>Cu taxi/Uber: Adresa exactă: Strada Negoiu 51</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://maps.google.com/?q=Strada+Negoiu+51+Bucuresti"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary text-center group"
+              >
+                <Navigation className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
+                Deschide în Google Maps
+              </a>
+              <a
+                href="tel:0751901111"
+                className="btn-secondary text-center"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                Sună Acum
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

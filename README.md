@@ -1,232 +1,178 @@
-# Meymoon Pilates Studio - Website Premium
+# Meymoon Pilates Studio - Website
 
-Un site web premium, modern și complet funcțional pentru Meymoon Pilates Studio, construit cu Next.js 14, TypeScript și Tailwind CSS.
+Un site web premium pentru studio-ul de Pilates Meymoon din București, construit cu Next.js 14, TypeScript și Tailwind CSS.
 
-## 🎯 Caracteristici
+## 🚀 Caracteristici
 
-### Design & UX
-- **Design premium modern** cu paleta de culori personalizată (#e7ded9, #906054)
-- **Responsive design** mobile-first cu optimizare pentru toate dispozitivele
-- **Animații fluide** și micro-interacțiuni pentru o experiență premium
-- **Accessibility** completă (ARIA, keyboard navigation, contrast optim)
-- **Performance optimizat** cu lazy loading și optimizări SEO
+- **Design Premium**: Interfață modernă și elegantă optimizată pentru studio-uri de Pilates
+- **Responsive**: Mobile-first design care funcționează perfect pe toate dispozitivele
+- **SEO Optimizat**: Meta tags complete, sitemap, robots.txt și structură JSON-LD
+- **Performanță**: Optimizat pentru viteza de încărcare și Core Web Vitals
+- **Accesibilitate**: Respectă standardele WCAG pentru accesibilitate
+- **Animații**: Micro-interacțiuni și tranziții fluide cu Framer Motion
+- **Formulare**: Sistem de rezervare complet cu validare client-side
 
-### Funcționalități
-- **Pagini complete**: Acasă, Despre, Servicii, Clase, Traineri, Blog, Contact
-- **Sistem de rezervare** cu modal interactiv
-- **Blog cu articole** și sistem de categorii
-- **Profiluri detaliate** pentru instructori
-- **Integrare Google Maps** cu locația exactă
-- **Formulare de contact** cu validare
-- **Newsletter signup** în footer
+## 📋 Pagini Incluse
 
-### SEO & Performance
-- **SEO maxim** cu meta tags, Open Graph, Twitter Cards
-- **Schema.org LocalBusiness** pentru optimizare locală
-- **Sitemap.xml** și robots.txt
-- **Optimizare Lighthouse** pentru performanță maximă
-- **Lazy loading** pentru imagini și componente
+- **Acasă**: Hero section, caracteristici, servicii, program, testimoniale
+- **Despre**: Povestea studioului, echipa, valorile, Somatic Breathwork
+- **Servicii**: Lista completă de servicii cu prețuri și detalii
+- **Programări**: Formular de rezervare cu validare
+- **Galerie**: Grid de imagini cu lightbox și filtrare
+- **Blog**: Articole SEO-optimizate despre Pilates și wellness
+- **Contact**: Informații de contact, hartă Google Maps, formulare
 
-## 🛠 Tehnologii
+## 🛠️ Tehnologii
 
-- **Next.js 14** - React framework cu App Router
-- **TypeScript** - Type safety și developer experience
-- **Tailwind CSS** - Styling utility-first
-- **Framer Motion** - Animații și interacțiuni
-- **Lucide React** - Iconuri moderne
-- **Swiper** - Carousel și slider-uri
+- **Next.js 14** - Framework React cu App Router
+- **TypeScript** - Tipizare statică pentru cod mai sigur
+- **Tailwind CSS** - Framework CSS utility-first
+- **Framer Motion** - Animații și tranziții
+- **React Hook Form** - Gestionarea formularelor
+- **React Hot Toast** - Notificări toast
+- **Lucide React** - Iconuri SVG
 
-## 📁 Structura proiectului
-
-```
-meymoon-pilates-studio/
-├── app/                          # App Router (Next.js 14)
-│   ├── globals.css              # Stiluri globale
-│   ├── layout.tsx               # Layout principal
-│   ├── page.tsx                 # Homepage
-│   ├── despre/                  # Pagina Despre
-│   ├── servicii/                # Pagina Servicii
-│   ├── clase/                   # Pagina Clase
-│   ├── traineri/                # Pagina Traineri
-│   ├── blog/                    # Blog și articole
-│   └── contact/                 # Pagina Contact
-├── components/                   # Componente reutilizabile
-│   ├── Header.tsx               # Header cu navigare
-│   ├── Footer.tsx               # Footer complet
-│   ├── Hero.tsx                 # Hero section
-│   ├── Services.tsx             # Secțiunea servicii
-│   ├── Classes.tsx              # Secțiunea clase
-│   ├── Trainers.tsx             # Secțiunea instructori
-│   ├── Testimonials.tsx         # Testimoniale
-│   └── ...                      # Alte componente
-├── public/                      # Assets statice
-│   ├── robots.txt               # Robots.txt pentru SEO
-│   ├── sitemap.xml              # Sitemap XML
-│   ├── manifest.json            # PWA manifest
-│   └── _headers                 # Headers pentru securitate
-├── tailwind.config.js           # Configurare Tailwind
-├── next.config.js               # Configurare Next.js
-├── tsconfig.json                # Configurare TypeScript
-└── package.json                 # Dependințe și scripturi
-```
-
-## 🚀 Instalare și rulare
+## 🚀 Instalare și Rulare
 
 ### Cerințe
 - Node.js 18+ 
-- npm, yarn sau pnpm
+- npm sau yarn
 
-### Instalare
+### Pași de instalare
+
+1. **Clonează repository-ul**
+   ```bash
+   git clone <repository-url>
+   cd meymoon-pilates-studio
+   ```
+
+2. **Instalează dependențele**
+   ```bash
+   npm install
+   # sau
+   yarn install
+   ```
+
+3. **Rulează în modul development**
+   ```bash
+   npm run dev
+   # sau
+   yarn dev
+   ```
+
+4. **Deschide în browser**
+   ```
+   http://localhost:3000
+   ```
+
+### Comenzi disponibile
+
 ```bash
-# Clonează repository-ul
-git clone [repository-url]
-cd meymoon-pilates-studio
+# Development
+npm run dev          # Rulează serverul de development
 
-# Instalează dependințele
-npm install
-# sau
-yarn install
-# sau
-pnpm install
+# Production
+npm run build        # Construiește aplicația pentru producție
+npm run start        # Rulează aplicația în modul producție
+
+# Linting
+npm run lint         # Rulează ESLint pentru verificarea codului
+
+# Export static
+npm run export       # Generează site-ul static pentru hosting
 ```
 
-### Dezvoltare
-```bash
-# Pornește serverul de dezvoltare
-npm run dev
-# sau
-yarn dev
-# sau
-pnpm dev
+## 📁 Structura Proiectului
+
 ```
-
-Aplicația va fi disponibilă la `http://localhost:3000`
-
-### Build pentru producție
-```bash
-# Creează build-ul de producție
-npm run build
-# sau
-yarn build
-# sau
-pnpm build
-
-# Pornește serverul de producție
-npm start
-# sau
-yarn start
-# sau
-pnpm start
+meymoon-pilates-studio/
+├── app/                    # App Router (Next.js 14)
+│   ├── globals.css        # Stiluri globale
+│   ├── layout.tsx         # Layout principal
+│   ├── page.tsx           # Pagina principală
+│   ├── despre/            # Pagina Despre
+│   ├── servicii/          # Pagina Servicii
+│   ├── programari/        # Pagina Programări
+│   ├── galerie/           # Pagina Galerie
+│   ├── blog/              # Pagina Blog + articole
+│   └── contact/           # Pagina Contact
+├── components/            # Componente React
+│   ├── Header.tsx         # Header cu navigare
+│   ├── Footer.tsx         # Footer cu informații
+│   ├── Hero.tsx           # Hero section
+│   ├── Features.tsx       # Secțiunea caracteristici
+│   ├── ServicesPreview.tsx # Preview servicii
+│   ├── SchedulePreview.tsx # Preview program
+│   ├── Testimonials.tsx   # Testimoniale
+│   ├── CTA.tsx            # Call-to-action
+│   ├── AboutHero.tsx      # Hero pentru Despre
+│   ├── OurStory.tsx       # Povestea studioului
+│   ├── Team.tsx           # Echipa
+│   ├── SomaticBreathwork.tsx # Detalii Somatic Breathwork
+│   ├── Values.tsx         # Valorile studioului
+│   ├── ServicesHero.tsx   # Hero pentru Servicii
+│   ├── ServicesList.tsx   # Lista serviciilor
+│   ├── ClassTypes.tsx     # Tipuri de clase
+│   ├── Pricing.tsx        # Prețuri
+│   ├── BookingHero.tsx    # Hero pentru Programări
+│   ├── BookingProcess.tsx # Procesul de rezervare
+│   ├── ContactForm.tsx    # Formular de contact
+│   ├── GalleryHero.tsx    # Hero pentru Galerie
+│   ├── ImageGallery.tsx   # Galeria de imagini
+│   ├── BlogHero.tsx       # Hero pentru Blog
+│   ├── BlogList.tsx       # Lista articolelor
+│   ├── BlogArticle.tsx    # Articol individual
+│   ├── ContactHero.tsx    # Hero pentru Contact
+│   ├── ContactInfo.tsx    # Informații de contact
+│   └── MapSection.tsx     # Secțiunea cu hartă
+├── public/                # Fișiere statice
+│   ├── robots.txt         # Robots.txt pentru SEO
+│   ├── sitemap.xml        # Sitemap XML
+│   ├── manifest.json      # Web App Manifest
+│   └── favicon.ico        # Favicon
+├── next.config.js         # Configurația Next.js
+├── tailwind.config.js     # Configurația Tailwind
+├── tsconfig.json          # Configurația TypeScript
+└── package.json           # Dependențe și scripturi
 ```
-
-### Export static
-```bash
-# Generează site-ul static
-npm run export
-# sau
-yarn export
-# sau
-pnpm export
-```
-
-## 📱 Pagini și funcționalități
-
-### 🏠 Homepage
-- Hero section cu animații și CTA-uri
-- Secțiunea servicii cu carduri interactive
-- Programul claselor cu sistem de rezervare
-- Profiluri scurte ale instructorilor
-- Testimoniale cu carousel
-- Statistici și informații despre studio
-
-### 📖 Despre
-- Povestea studioului și viziunea
-- Valorile și principiile
-- Misiunea și obiectivele
-- Timeline cu evoluția studioului
-
-### 🧘 Servicii
-- Lista completă de servicii
-- Secțiune specială pentru Somatic Breathwork
-- Prețuri și pachete
-- Beneficii și caracteristici pentru fiecare serviciu
-
-### 📅 Clase
-- Programul complet săptămânal
-- Tipuri de clase cu descrieri
-- Sistem de rezervare cu modal
-- Informații despre instrucțiuni și echipamente
-
-### 👥 Traineri
-- Profiluri detaliate ale instructorilor
-- Specializări și certificări
-- Realizări și experiență
-- Link-uri către social media
-
-### 📝 Blog
-- Articole despre wellness și Pilates
-- Sistem de categorii
-- Articole complete cu conținut SEO optimizat
-- Newsletter signup
-
-### 📞 Contact
-- Informații de contact complete
-- Formular de contact cu validare
-- Integrare Google Maps
-- Link-uri către social media și WhatsApp
 
 ## 🎨 Design System
 
-### Paleta de culori
-- **Primary**: #e7ded9 (ton cald, crem)
-- **Accent**: #906054 (maro-roșiatic, accent puternic)
-- **Neutrals**: Variațiuni de gri și alb
+### Paleta de Culori
+- **Primary**: `#906054` (Maro-roz profund)
+- **Secondary**: `#e7ded9` (Crem deschis)
+- **Accent**: `#22c55e` (Verde pentru CTA)
+- **Neutral**: Gama de griuri pentru text și background
 
 ### Tipografie
-- **Headings**: Playfair Display (serif elegant)
-- **Body**: Inter (sans-serif curat)
+- **Serif**: Playfair Display (pentru titluri)
+- **Sans**: Inter (pentru text)
 
-### Componente
-- **Butoane**: Stiluri primary/secondary cu hover effects
-- **Carduri**: Design rotunjit cu umbre și hover animations
-- **Formulare**: Stiluri consistente cu validare vizuală
-- **Navigare**: Header sticky cu blur effect
+### Breakpoints
+- Mobile: 320px - 767px
+- Tablet: 768px - 1023px
+- Desktop: 1024px+
 
-## 🔧 Configurare
+## 📧 Configurare Formular de Contact
 
-### Variabile de mediu
-Creează un fișier `.env.local` pentru variabilele de mediu:
+Pentru a activa formularul de rezervare, înlocuiește `PLACEHOLDER_FORM_ENDPOINT` din `components/ContactForm.tsx` cu endpoint-ul tău:
 
-```env
-NEXT_PUBLIC_SITE_URL=https://meymoonstudio.ro
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-NEXT_PUBLIC_ANALYTICS_ID=your_analytics_id
-```
+### Opțiuni recomandate:
 
-### Personalizare
-- **Culori**: Modifică `tailwind.config.js` pentru a schimba paleta
-- **Fonturi**: Actualizează importurile în `app/globals.css`
-- **Conținut**: Editează componentele din `components/` și `app/`
+1. **Formspree**
+   ```javascript
+   const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+   ```
 
-## 📈 SEO și Performance
+2. **Tally**
+   ```javascript
+   const FORM_ENDPOINT = 'https://tally.so/r/YOUR_FORM_ID'
+   ```
 
-### Optimizări implementate
-- Meta tags complete pentru fiecare pagină
-- Open Graph și Twitter Cards
-- Schema.org LocalBusiness
-- Sitemap.xml automat
-- Robots.txt configurat
-- Lazy loading pentru imagini
-- Optimizare pentru Core Web Vitals
-
-### Testare performance
-```bash
-# Instalează Lighthouse CLI
-npm install -g lighthouse
-
-# Testează performance-ul
-lighthouse http://localhost:3000 --output html --output-path ./lighthouse.html
-```
+3. **Webhook n8n**
+   ```javascript
+   const FORM_ENDPOINT = 'https://your-n8n-instance.com/webhook/booking'
+   ```
 
 ## 🚀 Deployment
 
@@ -237,19 +183,62 @@ lighthouse http://localhost:3000 --output html --output-path ./lighthouse.html
 
 ### Netlify
 1. Conectează repository-ul la Netlify
-2. Configurează build command: `npm run build`
-3. Configurează publish directory: `out`
+2. Configurează build settings:
+   - Build command: `npm run build`
+   - Publish directory: `out`
+3. Deploy
 
-### Server tradițional
-1. Rulează `npm run build`
+### Hosting Static
+1. Rulează `npm run export`
 2. Uploadează conținutul din `out/` pe server
-3. Configurează serverul pentru SPA routing
+
+## 🔧 Configurări SEO
+
+### Google Analytics
+Adaugă ID-ul tău Google Analytics în `app/layout.tsx`:
+```javascript
+// Înlocuiește 'your-google-verification-code' cu ID-ul tău
+verification: {
+  google: 'your-google-verification-code',
+}
+```
+
+### Meta Tags
+Toate paginile au meta tags complete pentru SEO. Actualizează:
+- `metadataBase` în `app/layout.tsx`
+- Imagini Open Graph în fiecare pagină
+- JSON-LD schema în `app/layout.tsx`
+
+## 📱 Optimizări Mobile
+
+- Design mobile-first
+- Touch-friendly butoane și linkuri
+- Imagini responsive cu `srcset`
+- Lazy loading pentru imagini
+- Swipe gestures în galerie
+
+## ♿ Accesibilitate
+
+- Semantic HTML5
+- ARIA labels pentru elemente interactive
+- Keyboard navigation
+- Screen reader friendly
+- High contrast support
+- Reduced motion support
+
+## 🎯 Performance
+
+- Image optimization cu Next.js
+- Code splitting automat
+- Lazy loading pentru componente
+- Critical CSS inlined
+- Tree shaking pentru bundle-uri mici
 
 ## 📞 Suport
 
-Pentru întrebări sau suport tehnic, contactează:
-- **Email**: contact@meymoonstudio.ro
-- **Telefon**: 0751 901 111
+Pentru întrebări sau probleme:
+- Email: contact@meymoonstudio.com
+- Telefon: 0751 901 111
 
 ## 📄 Licență
 
@@ -257,4 +246,5 @@ Acest proiect este proprietatea Meymoon Pilates Studio. Toate drepturile rezerva
 
 ---
 
-**Meymoon Pilates Studio** - Transformă-ți viața prin mișcare conștientă și respirație controlată.
+**Meymoon Pilates Studio** - București, România
+Strada Negoiu 51, București 031126

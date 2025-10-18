@@ -1,35 +1,27 @@
 import { Metadata } from 'next'
-import AboutHero from '@/components/AboutHero'
 import OurStory from '@/components/OurStory'
+import Team from '@/components/Team'
+import SomaticBreathwork from '@/components/SomaticBreathwork'
 import Values from '@/components/Values'
-import Mission from '@/components/Mission'
 
 export const metadata: Metadata = {
-  title: 'Despre noi - Meymoon Pilates Studio | Viziunea și misiunea noastră',
-  description: 'Descoperă povestea Meymoon Pilates Studio, viziunea noastră despre wellness și cum ne-am dedicat să te ajutăm să-ți atingi obiectivele de sănătate prin Pilates și Somatic Breathwork.',
-  keywords: 'despre Meymoon, studio pilates București, viziune wellness, misiune pilates, echipa pilates',
+  title: 'Despre Noi - Meymoon Pilates Studio | Povestea Studioului Nostru',
+  description: 'Descoperă povestea Meymoon Pilates Studio din București. Antrenori certificați, atmosferă profesională și servicii premium de Pilates și Somatic Breathwork.',
+  keywords: 'despre meymoon studio, antrenori pilates București, echipa studio pilates, somatic breathwork București, povestea studioului',
   openGraph: {
-    title: 'Despre noi - Meymoon Pilates Studio | Viziunea și misiunea noastră',
-    description: 'Descoperă povestea Meymoon Pilates Studio, viziunea noastră despre wellness și cum ne-am dedicat să te ajutăm să-ți atingi obiectivele de sănătate prin Pilates și Somatic Breathwork.',
-    url: 'https://meymoonstudio.ro/despre',
-    images: [
-      {
-        url: '/images/og-about.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Echipa Meymoon Pilates Studio',
-      },
-    ],
+    title: 'Despre Noi - Meymoon Pilates Studio | Povestea Studioului Nostru',
+    description: 'Descoperă povestea Meymoon Pilates Studio din București. Antrenori certificați, atmosferă profesională și servicii premium de Pilates și Somatic Breathwork.',
+    images: ['/og-about.jpg'],
   },
 }
 
 export default function About() {
   return (
     <>
-      <AboutHero />
       <OurStory />
+      <Team />
+      <SomaticBreathwork />
       <Values />
-      <Mission />
     </>
   )
 }

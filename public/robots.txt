@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://meymoonstudio.ro/sitemap.xml
+Sitemap: https://meymoonstudio.com/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
@@ -17,7 +17,7 @@ Disallow: /private/
 Allow: /
 Allow: /despre
 Allow: /servicii
-Allow: /clase
-Allow: /traineri
+Allow: /programari
+Allow: /galerie
 Allow: /blog
 Allow: /contact

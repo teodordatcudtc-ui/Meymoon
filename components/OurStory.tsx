@@ -1,146 +1,112 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Calendar, Users, Heart, Target } from 'lucide-react'
+import Image from 'next/image'
+import { Heart, Target, Users, Award } from 'lucide-react'
 
 const OurStory = () => {
-  const milestones = [
+  const storyPoints = [
     {
       year: '2019',
-      title: 'Începutul călătoriei',
-      description: 'Maria Ionescu a deschis primul studio de Pilates în București, cu o viziune clară: să aducă wellness-ul autentic în viața oamenilor.',
-      icon: Heart
+      title: 'Începutul Călătoriei',
+      description: 'Am deschis primul nostru studio cu o viziune clară: să aducem armonia și echilibrul în viața oamenilor prin mișcarea conștientă.',
+      icon: Heart,
     },
     {
       year: '2020',
-      title: 'Expansiunea echipei',
-      description: 'S-au alăturat primii instructori specializați, iar studioul a început să ofere clase de grup și sesiuni personalizate.',
-      icon: Users
-    },
-    {
-      year: '2021',
-      title: 'Introducerea Somatic Breathwork',
-      description: 'Alexandru Popescu s-a alăturat echipei, aducând specializarea în Somatic Breathwork și o abordare holistică a wellness-ului.',
-      icon: Target
+      title: 'Expansiunea Echipei',
+      description: 'Am crescut echipa cu antrenori certificați și am introdus Somatic Breathwork ca parte integrantă a programului nostru.',
+      icon: Users,
     },
     {
       year: '2022',
-      title: 'Recunoaștere națională',
-      description: 'Studio a fost recunoscut ca unul dintre cele mai bune centre de Pilates din București, cu peste 300 de clienți activi.',
-      icon: Calendar
-    },
-    {
-      year: '2023',
-      title: 'Comunitate înfloritoare',
-      description: 'Am ajuns la peste 500 de clienți mulțumiți și am dezvoltat programe specializate pentru seniori și recuperare.',
-      icon: Users
+      title: 'Recunoaștere Locală',
+      description: 'Am devenit unul dintre studiourile de Pilates cele mai apreciate din București, cu peste 200 de clienți mulțumiți.',
+      icon: Award,
     },
     {
       year: '2024',
-      title: 'Viitorul wellness-ului',
-      description: 'Continuăm să inovăm și să ne adaptăm nevoilor comunității noastre, rămânând fideli viziunii noastre de wellness autentic.',
-      icon: Heart
-    }
+      title: 'Viziunea Viitorului',
+      description: 'Continuăm să ne dezvoltăm și să oferim experiențe transformatoare, adaptându-ne nevoilor comunității noastre.',
+      icon: Target,
+    },
   ]
 
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary-800 mb-6">
-            Povestea noastră
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Heart className="w-4 h-4 fill-current" />
+            <span>Povestea noastră</span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
+            Călătoria
+            <span className="block text-gradient">Meymoon Studio</span>
           </h2>
-          <p className="text-xl text-primary-600 max-w-3xl mx-auto leading-relaxed">
-            De la o viziune simplă la o comunitate înfloritoare de wellness, 
-            descoperă cum am construit Meymoon Studio pas cu pas.
+
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            De la o viziune simplă la unul dintre cele mai apreciate studiouri de Pilates din București, 
+            călătoria noastră a fost una de pasiune, dedicare și rezultate extraordinare.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-600 to-primary-300 hidden md:block"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="relative">
+            <div className="relative w-full h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                alt="Echipa Meymoon Pilates Studio"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent"></div>
+            </div>
+          </div>
 
-          <div className="space-y-12">
-            {milestones.map((milestone, index) => (
-              <motion.div
-                key={milestone.year}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Year */}
-                <div className="flex-shrink-0 w-16 h-16 bg-accent-600 rounded-full flex items-center justify-center text-white font-bold text-lg relative z-10">
-                  {milestone.year}
-                </div>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-2xl font-serif font-bold text-neutral-900 mb-4">
+                Misiunea Noastră
+              </h3>
+              <p className="text-neutral-600 leading-relaxed mb-6">
+                Ne dedicăm să oferim o experiență de Pilates autentică și transformatoare, 
+                combinând tradiția cu inovația pentru a-ți aduce echilibrul și forța interioară.
+              </p>
+            </div>
 
-                {/* Content */}
-                <div className={`flex-1 ${index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'}`}>
-                  <div className="card p-8">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <milestone.icon className="w-6 h-6 text-accent-600" />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-playfair font-semibold text-primary-800 mb-3">
-                          {milestone.title}
-                        </h3>
-                        <p className="text-primary-600 leading-relaxed">
-                          {milestone.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            <div>
+              <h3 className="text-2xl font-serif font-bold text-neutral-900 mb-4">
+                Viziunea Noastră
+              </h3>
+              <p className="text-neutral-600 leading-relaxed">
+                Să devenim un spațiu de referință pentru wellness și mișcare conștientă, 
+                unde fiecare client poate descoperi potențialul său interior.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Story Summary */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-gradient-to-r from-primary-100 to-accent-100 rounded-3xl p-8 md:p-12">
-            <h3 className="text-3xl font-playfair font-bold text-primary-800 mb-6">
-              De ce Meymoon?
-            </h3>
-            <p className="text-lg text-primary-700 leading-relaxed max-w-4xl mx-auto mb-8">
-              Numele "Meymoon" vine din credința noastră că fiecare persoană are propriul ritm natural, 
-              ca fazele lunii. La fel cum luna influențează mareele, noi credem că fiecare dintre noi 
-              are un ciclu natural de energie și regenerare. Pilates și Somatic Breathwork ne ajută 
-              să ne conectăm cu acest ritm natural și să trăim în armonie cu propriul corp.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-3xl font-bold text-accent-600 mb-2">500+</div>
-                <div className="text-primary-600">Clienți transformați</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-accent-600 mb-2">5+</div>
-                <div className="text-primary-600">Ani de experiență</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-accent-600 mb-2">100%</div>
-                <div className="text-primary-600">Dedicare la calitate</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {storyPoints.map((point, index) => (
+            <div key={index} className="group">
+              <div className="card p-6 h-full text-center group-hover:scale-105 transition-all duration-300">
+                <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <point.icon className="w-8 h-8 text-primary-500" />
+                </div>
+                
+                <div className="text-3xl font-bold text-primary-500 mb-2">{point.year}</div>
+                <h3 className="text-xl font-semibold text-neutral-900 mb-3 group-hover:text-primary-500 transition-colors">
+                  {point.title}
+                </h3>
+                <p className="text-neutral-600 leading-relaxed text-sm">
+                  {point.description}
+                </p>
               </div>
             </div>
-          </div>
-        </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

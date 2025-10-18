@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -12,14 +13,14 @@ const inter = Inter({
 
 const playfair = Playfair_Display({ 
   subsets: ['latin'],
-  variable: '--font-serif',
+  variable: '--font-playfair',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Meymoon Pilates Studio - Clase de Pilates și Somatic Breathwork în București',
-  description: 'Descoperă beneficiile Pilates și Somatic Breathwork la Meymoon Studio. Clase profesionale în București, Sector 3. Programează o ședință gratuită!',
-  keywords: 'pilates București, studio pilates București, Somatic Breathwork București, clase pilates sector 3, pilates personalizat, wellness București',
+  title: 'Meymoon Pilates Studio - București | Clase de Pilates Premium',
+  description: 'Studio premium de Pilates în București. Clase de Pilates Mat, Reformer, Somatic Breathwork și antrenamente private. Rezervă acum la Strada Negoiu 51.',
+  keywords: 'pilates București, studio pilates, clase pilates, reformer pilates, somatic breathwork București, antrenor pilates, pilates privat',
   authors: [{ name: 'Meymoon Pilates Studio' }],
   creator: 'Meymoon Pilates Studio',
   publisher: 'Meymoon Pilates Studio',
@@ -28,21 +29,21 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://meymoonstudio.ro'),
+  metadataBase: new URL('https://meymoonstudio.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Meymoon Pilates Studio - Clase de Pilates și Somatic Breathwork în București',
-    description: 'Descoperă beneficiile Pilates și Somatic Breathwork la Meymoon Studio. Clase profesionale în București, Sector 3. Programează o ședință gratuită!',
-    url: 'https://meymoonstudio.ro',
+    title: 'Meymoon Pilates Studio - București | Clase de Pilates Premium',
+    description: 'Studio premium de Pilates în București. Clase de Pilates Mat, Reformer, Somatic Breathwork și antrenamente private.',
+    url: 'https://meymoonstudio.com',
     siteName: 'Meymoon Pilates Studio',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Meymoon Pilates Studio - Interior studio modern',
+        alt: 'Meymoon Pilates Studio - București',
       },
     ],
     locale: 'ro_RO',
@@ -50,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Meymoon Pilates Studio - Clase de Pilates și Somatic Breathwork în București',
-    description: 'Descoperă beneficiile Pilates și Somatic Breathwork la Meymoon Studio. Clase profesionale în București, Sector 3.',
-    images: ['/images/og-image.jpg'],
+    title: 'Meymoon Pilates Studio - București | Clase de Pilates Premium',
+    description: 'Studio premium de Pilates în București. Clase de Pilates Mat, Reformer, Somatic Breathwork și antrenamente private.',
+    images: ['/og-image.jpg'],
     creator: '@meymoonstudio',
   },
   robots: {
@@ -71,6 +72,84 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HealthAndBeautyBusiness',
+  name: 'Meymoon Pilates Studio',
+  description: 'Studio premium de Pilates în București. Clase de Pilates Mat, Reformer, Somatic Breathwork și antrenamente private.',
+  url: 'https://meymoonstudio.com',
+  telephone: '+40751901111',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Strada Negoiu 51',
+    addressLocality: 'București',
+    postalCode: '031126',
+    addressCountry: 'RO',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 44.4268,
+    longitude: 26.1025,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '20:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '09:00',
+      closes: '14:00',
+    },
+  ],
+  sameAs: [
+    'https://www.instagram.com/meymoonstudio/',
+    'https://www.facebook.com/p/MeyMoon-Studio-61558528991097/',
+  ],
+  priceRange: '$$',
+  serviceArea: {
+    '@type': 'City',
+    name: 'București',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicii Pilates',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Pilates Mat',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Pilates Reformer',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Somatic Breathwork',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Antrenamente Private',
+        },
+      },
+    ],
+  },
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -85,51 +164,27 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#906054" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
-        {/* Schema.org LocalBusiness */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SportsActivityLocation",
-              "name": "Meymoon Pilates Studio",
-              "description": "Studio de Pilates și Somatic Breathwork în București, Sector 3",
-              "url": "https://meymoonstudio.ro",
-              "telephone": "+40751901111",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Strada Negoiu 51",
-                "addressLocality": "București",
-                "postalCode": "031126",
-                "addressCountry": "RO"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "44.425774803717935",
-                "longitude": "26.13108950531052"
-              },
-              "openingHours": "Mo-Fr 07:00-21:00,Sa 08:00-18:00,Su 09:00-17:00",
-              "sameAs": [
-                "https://www.instagram.com/meymoonstudio/",
-                "https://www.facebook.com/p/MeyMoon-Studio-61558528991097/"
-              ],
-              "image": "https://meymoonstudio.ro/images/studio-interior.jpg",
-              "priceRange": "$$"
-            })
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased">
-        <a href="#main-content" className="skip-link">
-          Sari la conținutul principal
-        </a>
+      <body className={`${inter.className} antialiased`}>
         <Header />
-        <main id="main-content">
+        <main className="min-h-screen">
           {children}
         </main>
         <Footer />
+        <Toaster 
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#906054',
+              color: '#fff',
+            },
+          }}
+        />
       </body>
     </html>
   )

@@ -1,35 +1,25 @@
 import { Metadata } from 'next'
-import ContactHero from '@/components/ContactHero'
-import ContactForm from '@/components/ContactForm'
 import ContactInfo from '@/components/ContactInfo'
 import MapSection from '@/components/MapSection'
+import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact - Meymoon Pilates Studio | Programează o ședință gratuită',
-  description: 'Contactează Meymoon Pilates Studio pentru programare sau informații. Sună la 0751 901 111 sau vizitează-ne la Strada Negoiu 51, București. Prima ședință gratuită!',
-  keywords: 'contact pilates București, programare pilates, telefon pilates studio, adresă pilates sector 3, Meymoon Studio contact',
+  title: 'Contact - Meymoon Pilates Studio | Strada Negoiu 51, București',
+  description: 'Contactează Meymoon Pilates Studio din București. Telefon: 0751 901 111, Adresă: Strada Negoiu 51. Rezervări, întrebări și informații despre clasele de Pilates.',
+  keywords: 'contact pilates București, telefon pilates, adresă studio pilates, rezervări pilates, Meymoon studio contact',
   openGraph: {
-    title: 'Contact - Meymoon Pilates Studio | Programează o ședință gratuită',
-    description: 'Contactează Meymoon Pilates Studio pentru programare sau informații. Sună la 0751 901 111 sau vizitează-ne la Strada Negoiu 51, București. Prima ședință gratuită!',
-    url: 'https://meymoonstudio.ro/contact',
-    images: [
-      {
-        url: '/images/og-contact.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Contact Meymoon Pilates Studio',
-      },
-    ],
+    title: 'Contact - Meymoon Pilates Studio | Strada Negoiu 51, București',
+    description: 'Contactează Meymoon Pilates Studio din București. Telefon: 0751 901 111, Adresă: Strada Negoiu 51. Rezervări, întrebări și informații despre clasele de Pilates.',
+    images: ['/og-contact.jpg'],
   },
 }
 
 export default function Contact() {
   return (
     <>
-      <ContactHero />
       <ContactInfo />
-      <ContactForm />
       <MapSection />
+      <ContactForm />
     </>
   )
 }
