@@ -5,7 +5,7 @@ import { Heart } from 'lucide-react'
 
 const AboutHero = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-br from-primary-50 via-white to-primary-100">
+    <section className="relative py-20 bg-gradient-to-br from-primary-50 via-white to-primary-100 pt-32">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -7,7 +7,7 @@ import { ArrowRight, Play, Star } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-primary-100">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-primary-100 pt-20">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-pattern opacity-30"></div>
       
@@ -19,47 +19,32 @@ const Hero = () => {
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+          <div
             className="text-center lg:text-left"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <div
               className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
             >
               <Star className="w-4 h-4 fill-current" />
               <span>Studio Premium de Pilates în București</span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+            <h1
               className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-neutral-900 mb-6 leading-tight"
             >
               Descoperă
               <span className="block text-gradient">Armonia</span>
               <span className="block">Prin Mișcare</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+            <p
               className="text-xl md:text-2xl text-neutral-600 mb-8 leading-relaxed max-w-2xl"
             >
               Învață să-ți conectezi mintea cu corpul prin Pilates și Somatic Breathwork. 
               Clase mici, antrenori certificați, atmosferă calmă și profesională.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+            <div
               className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8"
             >
               <Link
@@ -77,13 +62,10 @@ const Hero = () => {
                 <Play className="mr-2 w-4 h-4 group-hover:scale-110 transition-transform" />
                 Explorează Serviciile
               </Link>
-            </motion.div>
+            </div>
 
             {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
+            <div
               className="grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0"
             >
               <div className="text-center">
@@ -98,16 +80,11 @@ const Hero = () => {
                 <div className="text-3xl font-bold text-primary-500 mb-1">15+</div>
                 <div className="text-sm text-neutral-600">Clase Săptămânal</div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
-          >
+          {/* Image - Hidden on mobile */}
+          <div className="relative hidden lg:block">
             <div className="relative w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
@@ -122,10 +99,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent"></div>
               
               {/* Floating Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
+              <div
                 className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl"
               >
                 <div className="flex items-center space-x-4">
@@ -137,13 +111,13 @@ const Hero = () => {
                     <p className="text-sm text-neutral-600">Strada Negoiu 51, București</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
-            {/* Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent-400 rounded-full opacity-20 animate-float"></div>
-            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-secondary-400 rounded-full opacity-20 animate-float animation-delay-600"></div>
-          </motion.div>
+            {/* Decorative Elements - Hidden on mobile */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent-400 rounded-full opacity-20 animate-float hidden lg:block"></div>
+            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-secondary-400 rounded-full opacity-20 animate-float animation-delay-600 hidden lg:block"></div>
+          </div>
         </div>
       </div>
 

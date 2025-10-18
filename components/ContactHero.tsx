@@ -5,7 +5,7 @@ import { MessageCircle } from 'lucide-react'
 
 const ContactHero = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-br from-secondary-50 via-white to-accent-50">
+    <section className="relative py-20 bg-gradient-to-br from-secondary-50 via-white to-accent-50 pt-32">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, User, Clock, ArrowLeft, Tag, Share2 } from 'lucide-react'
@@ -23,48 +22,18 @@ interface BlogArticleProps {
 }
 
 const BlogArticle = ({ article }: BlogArticleProps) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  }
 
   return (
     <article className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="container-custom">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
             className="max-w-4xl mx-auto"
           >
             {/* Back Button */}
-            <motion.div
-              variants={itemVariants}
+            <div
               className="mb-8"
             >
               <Link
@@ -74,11 +43,10 @@ const BlogArticle = ({ article }: BlogArticleProps) => {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Înapoi la Blog
               </Link>
-            </motion.div>
+            </div>
 
             {/* Article Meta */}
-            <motion.div
-              variants={itemVariants}
+            <div
               className="flex flex-wrap items-center gap-4 mb-6"
             >
               <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
@@ -98,27 +66,24 @@ const BlogArticle = ({ article }: BlogArticleProps) => {
                   <span>{article.readTime}</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Title */}
-            <motion.h1
-              variants={itemVariants}
+            <h1
               className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-neutral-900 mb-6 leading-tight"
             >
               {article.title}
-            </motion.h1>
+            </h1>
 
             {/* Excerpt */}
-            <motion.p
-              variants={itemVariants}
+            <p
               className="text-xl text-neutral-600 leading-relaxed mb-8"
             >
               {article.excerpt}
-            </motion.p>
+            </p>
 
             {/* Tags */}
-            <motion.div
-              variants={itemVariants}
+            <div
               className="flex flex-wrap gap-2 mb-8"
             >
               {article.tags.map((tag) => (
@@ -129,34 +94,28 @@ const BlogArticle = ({ article }: BlogArticleProps) => {
                   #{tag}
                 </span>
               ))}
-            </motion.div>
+            </div>
 
             {/* Share Button */}
-            <motion.div
-              variants={itemVariants}
+            <div
               className="flex items-center space-x-4"
             >
               <button className="flex items-center space-x-2 text-neutral-600 hover:text-blue-500 transition-colors">
                 <Share2 className="w-4 h-4" />
                 <span>Partajează</span>
               </button>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Featured Image */}
       <section className="py-8">
         <div className="container-custom">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
             className="max-w-4xl mx-auto"
           >
-            <motion.div
-              variants={itemVariants}
+            <div
               className="relative h-64 md:h-96 rounded-2xl overflow-hidden shadow-xl"
             >
               <Image
@@ -166,42 +125,32 @@ const BlogArticle = ({ article }: BlogArticleProps) => {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Article Content */}
       <section className="py-12">
         <div className="container-custom">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
             className="max-w-4xl mx-auto"
           >
-            <motion.div
-              variants={itemVariants}
+            <div
               className="prose prose-lg max-w-none"
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Author Bio */}
       <section className="py-12 bg-neutral-50">
         <div className="container-custom">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
             className="max-w-4xl mx-auto"
           >
-            <motion.div
-              variants={itemVariants}
+            <div
               className="card p-8"
             >
               <div className="flex items-start space-x-6">
@@ -222,34 +171,27 @@ const BlogArticle = ({ article }: BlogArticleProps) => {
                   </p>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Related Articles */}
       <section className="py-16">
         <div className="container-custom">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
             className="max-w-4xl mx-auto"
           >
-            <motion.h3
-              variants={itemVariants}
+            <h3
               className="text-3xl font-serif font-bold text-neutral-900 text-center mb-12"
             >
               Articole Similare
-            </motion.h3>
+            </h3>
 
-            <motion.div
-              variants={containerVariants}
+            <div
               className="grid grid-cols-1 md:grid-cols-2 gap-8"
             >
-              <motion.div
-                variants={itemVariants}
+              <div
                 className="card p-6 group hover:scale-105 transition-all duration-300"
               >
                 <h4 className="text-lg font-semibold text-neutral-900 mb-3 group-hover:text-blue-500 transition-colors">
@@ -266,10 +208,9 @@ const BlogArticle = ({ article }: BlogArticleProps) => {
                   Citește articolul
                   <ArrowLeft className="ml-1 w-4 h-4 rotate-180" />
                 </Link>
-              </motion.div>
+              </div>
 
-              <motion.div
-                variants={itemVariants}
+              <div
                 className="card p-6 group hover:scale-105 transition-all duration-300"
               >
                 <h4 className="text-lg font-semibold text-neutral-900 mb-3 group-hover:text-blue-500 transition-colors">
@@ -286,37 +227,30 @@ const BlogArticle = ({ article }: BlogArticleProps) => {
                   Citește articolul
                   <ArrowLeft className="ml-1 w-4 h-4 rotate-180" />
                 </Link>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-blue-500 to-blue-600">
         <div className="container-custom">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
             className="text-center text-white"
           >
-            <motion.h3
-              variants={itemVariants}
+            <h3
               className="text-2xl md:text-3xl font-serif font-bold mb-4"
             >
               Gata să încerci practica?
-            </motion.h3>
-            <motion.p
-              variants={itemVariants}
+            </h3>
+            <p
               className="text-lg mb-6 opacity-90 max-w-2xl mx-auto"
             >
               Rezervă-ți prima clasă gratuită și descoperă personal beneficiile 
               Pilates-ului și Somatic Breathwork-ului.
-            </motion.p>
-            <motion.div
-              variants={itemVariants}
+            </p>
+            <div
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Link
@@ -331,8 +265,8 @@ const BlogArticle = ({ article }: BlogArticleProps) => {
               >
                 Contactează-ne
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
     </article>

@@ -5,7 +5,7 @@ import { BookOpen } from 'lucide-react'
 
 const BlogHero = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-br from-accent-50 via-white to-primary-50">
+    <section className="relative py-20 bg-gradient-to-br from-accent-50 via-white to-primary-50 pt-32">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -1,15 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import { Calendar, Clock, Users, ArrowRight } from 'lucide-react'
 
 const SchedulePreview = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
 
   const schedule = [
     { day: 'Luni', classes: ['Pilates Mat - 9:00', 'Reformer - 18:00', 'Somatic Breathwork - 19:30'] },
@@ -21,68 +16,36 @@ const SchedulePreview = () => {
     { day: 'Duminică', classes: ['Închis', '', ''] },
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  }
 
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
+        <div
           className="text-center mb-16"
         >
-          <motion.div
-            variants={itemVariants}
+          <div
             className="inline-flex items-center space-x-2 bg-secondary-100 text-secondary-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
           >
             <Calendar className="w-4 h-4" />
             <span>Programul Claselor</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            variants={itemVariants}
+          <h2
             className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6"
           >
             Programul
             <span className="block text-gradient">Săptămânii</span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            variants={itemVariants}
+          <p
             className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed"
           >
             Găsește clasa potrivită pentru tine din programul nostru variat. 
             Toate clasele sunt adaptate nivelului tău și au loc într-o atmosferă relaxantă.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
+        <div
           className="max-w-6xl mx-auto"
         >
           {/* Desktop Schedule */}
@@ -96,9 +59,8 @@ const SchedulePreview = () => {
             <div className="bg-white rounded-b-2xl shadow-xl overflow-hidden">
               <div className="grid grid-cols-7 gap-0">
                 {schedule.map((day, index) => (
-                  <motion.div
+                  <div
                     key={day.day}
-                    variants={itemVariants}
                     className={`p-4 border-r border-neutral-200 last:border-r-0 ${
                       day.day === 'Duminică' ? 'bg-neutral-50' : 'bg-white'
                     }`}
@@ -122,7 +84,7 @@ const SchedulePreview = () => {
                         </div>
                       ))}
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -131,9 +93,8 @@ const SchedulePreview = () => {
           {/* Mobile Schedule */}
           <div className="lg:hidden space-y-4">
             {schedule.map((day, index) => (
-              <motion.div
+              <div
                 key={day.day}
-                variants={itemVariants}
                 className={`card p-6 ${
                   day.day === 'Duminică' ? 'bg-neutral-50' : 'bg-white'
                 }`}
@@ -157,21 +118,16 @@ const SchedulePreview = () => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Schedule Info */}
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
+        <div
           className="mt-16"
         >
-          <motion.div
-            variants={itemVariants}
+          <div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
           >
             <div className="text-center">
@@ -209,11 +165,10 @@ const SchedulePreview = () => {
                 Flexibilitate maximă
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA */}
-          <motion.div
-            variants={itemVariants}
+          <div
             className="text-center"
           >
             <div className="bg-gradient-to-r from-accent-500 to-accent-600 rounded-2xl p-8 md:p-12 text-white">
@@ -232,8 +187,8 @@ const SchedulePreview = () => {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )

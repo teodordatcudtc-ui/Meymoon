@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { Send, Phone, Mail, MapPin, Clock } from 'lucide-react'
@@ -20,10 +19,6 @@ interface FormData {
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
 
   const {
     register,
@@ -66,74 +61,39 @@ const ContactForm = () => {
     }
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  }
 
   return (
     <section className="section-padding bg-neutral-50">
       <div className="container-custom">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
-          className="text-center mb-16"
-        >
-          <motion.div
-            variants={itemVariants}
+        <div className="text-center mb-16">
+          <div
             className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
           >
             <Send className="w-4 h-4" />
             <span>Rezervă Acum</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            variants={itemVariants}
+          <h2
             className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6"
           >
             Completează
             <span className="block text-gradient">Formularul</span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            variants={itemVariants}
+          <p
             className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed"
           >
             Completează formularul de mai jos pentru a-ți rezerva clasa de Pilates. 
             Te vom contacta în cel mai scurt timp pentru a confirma rezervarea.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Info */}
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
             className="lg:col-span-1"
           >
-            <motion.div
-              variants={itemVariants}
+            <div
               className="space-y-8"
             >
               <div>
@@ -209,19 +169,14 @@ const ContactForm = () => {
                   *Valabil pentru prima rezervare
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={containerVariants}
+          <div
             className="lg:col-span-2"
           >
-            <motion.div
-              variants={itemVariants}
+            <div
               className="card p-8"
             >
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -395,8 +350,8 @@ const ContactForm = () => {
                   )}
                 </button>
               </form>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

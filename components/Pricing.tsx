@@ -1,15 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import { Check, Star, ArrowRight, Clock, Users } from 'lucide-react'
 
 const Pricing = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
 
   const pricingPlans = [
     {
@@ -98,75 +93,32 @@ const Pricing = () => {
     },
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  }
 
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
-          className="text-center mb-16"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center space-x-2 bg-accent-100 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
-          >
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-accent-100 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Star className="w-4 h-4" />
             <span>Prețuri și Pachete</span>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6"
-          >
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
             Alege
             <span className="block text-gradient">Pachetul Potrivit</span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed"
-          >
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
             Oferim pachete flexibile adaptate nevoilor și bugetului fiecăruia. 
             Prima clasă este gratuită pentru clienții noi!
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Pricing Plans */}
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {pricingPlans.map((plan, index) => (
-            <motion.div
+            <div
               key={plan.name}
-              variants={itemVariants}
               className={`relative group ${
                 plan.popular ? 'md:scale-105' : ''
               }`}
@@ -223,33 +175,26 @@ const Pricing = () => {
                   <ArrowRight className="inline-block ml-2 w-4 h-4" />
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Additional Services */}
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
+        <div
           className="mb-16"
         >
-          <motion.h3
-            variants={itemVariants}
+          <h3
             className="text-3xl font-serif font-bold text-neutral-900 text-center mb-12"
           >
             Servicii Suplimentare
-          </motion.h3>
+          </h3>
 
-          <motion.div
-            variants={containerVariants}
+          <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {additionalServices.map((service, index) => (
-              <motion.div
+              <div
                 key={service.name}
-                variants={itemVariants}
                 className="card p-6 text-center group hover:scale-105 transition-all duration-300"
               >
                 <h4 className="text-lg font-semibold text-neutral-900 mb-2">
@@ -261,21 +206,16 @@ const Pricing = () => {
                 <p className="text-sm text-neutral-600 leading-relaxed">
                   {service.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* FAQ Section */}
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
+        <div
           className="mb-16"
         >
-          <motion.div
-            variants={itemVariants}
+          <div
             className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8 md:p-12"
           >
             <h3 className="text-2xl md:text-3xl font-serif font-bold text-neutral-900 text-center mb-8">
@@ -319,18 +259,13 @@ const Pricing = () => {
                 </p>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* CTA */}
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
+        <div
         >
-          <motion.div
-            variants={itemVariants}
+          <div
             className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-8 md:p-12 text-white text-center"
           >
             <h3 className="text-2xl md:text-3xl font-serif font-bold mb-4">
@@ -355,8 +290,8 @@ const Pricing = () => {
                 Contactează-ne
               </Link>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )

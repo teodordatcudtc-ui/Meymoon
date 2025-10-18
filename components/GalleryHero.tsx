@@ -5,7 +5,7 @@ import { Camera } from 'lucide-react'
 
 const GalleryHero = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-br from-primary-50 via-white to-secondary-50">
+    <section className="relative py-20 bg-gradient-to-br from-primary-50 via-white to-secondary-50 pt-32">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
